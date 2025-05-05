@@ -3,12 +3,14 @@ from setuptools import setup, find_packages
 
 
 def version() -> str:
-    with open(os.path.join(os.path.dirname(__file__), 'stable_whisper/_version.py')) as f:
-        return f.read().split('=')[-1].strip().strip('"').strip("'")
+    with open(
+        os.path.join(os.path.dirname(__file__), "stable_whisper/_version.py")
+    ) as f:
+        return f.read().split("=")[-1].strip().strip('"').strip("'")
 
 
 def read_me() -> str:
-    with open('README.md', 'r', encoding='utf-8') as f:
+    with open("README.md", "r", encoding="utf-8") as f:
         return f.read()
 
 
@@ -17,7 +19,7 @@ setup(
     version=version(),
     description="Modifies OpenAI's Whisper to produce more reliable timestamps.",
     long_description=read_me(),
-    long_description_content_type='text/markdown',
+    long_description_content_type="text/markdown",
     python_requires=">=3.8",
     author="Jian",
     url="https://github.com/jianfch/stable-ts",
@@ -28,23 +30,15 @@ setup(
         "torch",
         "torchaudio",
         "tqdm",
-        "openai-whisper>=20230314,<=20240930"
+        "git+https://github.com/vedit/whisper.git@v20240930-1",
     ],
     extras_require={
-        "fw": [
-            "faster-whisper"
-        ],
-        "hf": [
-            "transformers>=4.23.0",
-            "optimum",
-            "accelerate"
-        ],
-        "mlx": [
-            "mlx-whisper"
-        ]
+        "fw": ["faster-whisper"],
+        "hf": ["transformers>=4.23.0", "optimum", "accelerate"],
+        "mlx": ["mlx-whisper"],
     },
     entry_points={
         "console_scripts": ["stable-ts=stable_whisper.whisper_word_level:cli"],
     },
-    include_package_data=False
+    include_package_data=False,
 )
