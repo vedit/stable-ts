@@ -22,7 +22,7 @@ setup(
     long_description_content_type="text/markdown",
     python_requires=">=3.8",
     author="Jian",
-    url="https://github.com/jianfch/stable-ts",
+    url="https://github.com/vedit/stable-ts",
     license="MIT",
     packages=find_packages(include=["stable_whisper", "stable_whisper.*"]),
     install_requires=[
@@ -30,7 +30,7 @@ setup(
         "torch",
         "torchaudio",
         "tqdm",
-        "git+https://github.com/vedit/whisper.git@v20240930-1",
+        "openai-whisper @ git+https://github.com/vedit/whisper.git@v20240930-1",
     ],
     extras_require={
         "fw": ["faster-whisper"],
